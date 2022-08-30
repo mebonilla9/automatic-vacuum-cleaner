@@ -1,4 +1,4 @@
-:root {
+/*:root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
@@ -20,6 +20,7 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
@@ -49,9 +50,11 @@ h1 {
   padding: 1.5em;
   will-change: filter;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.vanilla:hover {
   filter: drop-shadow(0 0 2em #f7df1eaa);
 }
@@ -75,9 +78,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -88,10 +93,72 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }
+}*/
+
+#aspiradora {
+  max-width: 20%;
+  max-height: 20%;
+  left: 650;
+  top: 100;
+  position: absolute;
+}
+
+
+
+#trashA1,
+#trashA2,
+#trashA3,
+#trashA4,
+#trashB1,
+#trashB2,
+#trashB3,
+#trashB4 {
+  max-width: 50%;
+  max-height: 50%;
+  visibility: hidden;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+#sectorA,
+#sectorB {
+  position: relative;
+  border: 8px solid white;
+  border-radius: 40px;
+  height: 400px;
+  width: 400px;
+}
+
+#SectorAfila1,
+#SectorAfila2,
+#SectorBfila1,
+#SectorBfila2 {
+  height: 190px;
+  width: 390px;
+}
+
+#SectorA1,
+#SectorA2,
+#SectorA3,
+#SectorA4,
+#SectorB1,
+#SectorB2,
+#SectorB3,
+#SectorB4 {
+  height: 190px;
+  width: 390px;
 }
