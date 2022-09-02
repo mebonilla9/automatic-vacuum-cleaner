@@ -1,4 +1,4 @@
-/*:root {
+:root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
@@ -6,7 +6,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #3d3d3d;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -67,6 +67,10 @@ h1 {
   color: #888;
 }
 
+.canvas{
+  background-color: #ffffff;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -101,64 +105,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}*/
-
-#aspiradora {
-  max-width: 20%;
-  max-height: 20%;
-  left: 650;
-  top: 100;
-  position: absolute;
-}
-
-
-
-#trashA1,
-#trashA2,
-#trashA3,
-#trashA4,
-#trashB1,
-#trashB2,
-#trashB3,
-#trashB4 {
-  max-width: 50%;
-  max-height: 50%;
-  visibility: hidden;
-}
-
-body {
-  margin: 0;
-  height: 100vh;
-  width: 100%;
-  display: grid;
-  place-items: center;
-}
-
-#sectorA,
-#sectorB {
-  position: relative;
-  border: 8px solid white;
-  border-radius: 40px;
-  height: 400px;
-  width: 400px;
-}
-
-#SectorAfila1,
-#SectorAfila2,
-#SectorBfila1,
-#SectorBfila2 {
-  height: 190px;
-  width: 390px;
-}
-
-#SectorA1,
-#SectorA2,
-#SectorA3,
-#SectorA4,
-#SectorB1,
-#SectorB2,
-#SectorB3,
-#SectorB4 {
-  height: 190px;
-  width: 390px;
 }

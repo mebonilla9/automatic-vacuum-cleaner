@@ -1,24 +1,26 @@
 import './style.css'
-import javascriptLogo from './assets/javascript.svg'
-import vite from './assets/vite.svg'
-import { setupCounter } from './counter'
+import { ShapeGenerator} from './ShapeGenerator'
 
-/*document.querySelector('#app').innerHTML = `
+document.querySelector('#app').innerHTML = `
   <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${vite}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
+    <form>
+      <input type="text" id="txtQuantity">
+      <button type="submit" id="btnRun">Run</button>
+    </form>
+    <canvas id="mainSpace" class="canvas" width="1000" height="600">
+    </canvas>
   </div>
-`*/
+`
 
-setupCounter(document.querySelector('#counter'))
+const btnRun = document.getElementById('btnRun')
+const canvas = document.getElementById('mainSpace')
+
+btnRun.addEventListener('click', event => {
+  event.preventDefault()
+  console.log('clicked')
+  const context = canvas.getContext('2d')
+  const txtQuantity = document.getElementById('txtQuantity')
+  const generator = new ShapeGenerator(context, parseInt(txtQuantity.value))
+  generator.generate()
+})
+
