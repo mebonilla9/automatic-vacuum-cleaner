@@ -1,5 +1,5 @@
 import './style.css'
-import { ShapeGenerator} from './ShapeGenerator'
+import { ShapeGenerator } from './ShapeGenerator'
 
 document.querySelector('#app').innerHTML = `
   <div>
@@ -14,6 +14,16 @@ document.querySelector('#app').innerHTML = `
 
 const btnRun = document.getElementById('btnRun')
 const canvas = document.getElementById('mainSpace')
+
+const context = canvas.getContext('2d')
+context.beginPath()
+context.moveTo(0,100)
+context.lineTo(0,1000)
+context.stroke()
+context.beginPath()
+context.moveTo(500, 100)
+context.lineTo(500, 600)
+context.stroke()
 
 btnRun.addEventListener('click', event => {
   event.preventDefault()

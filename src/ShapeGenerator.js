@@ -1,15 +1,18 @@
 import { Shape } from './entities/Shape'
 import { Randomizer } from './util/Randomizer'
+import { Vaccum } from './entities/Vaccum'
 
 export class ShapeGenerator {
   constructor(context, quantity) {
     this.context = context
     this.quantity = quantity
     this.shapes = []
+    this.vaccum = undefined
     console.log('generated')
   }
 
   async generate() {
+    this.vaccum = new Vaccum(this.context)
     console.log('defining')
     const randomizer = new Randomizer()
     for (let index = 0; index < this.quantity; index++) {

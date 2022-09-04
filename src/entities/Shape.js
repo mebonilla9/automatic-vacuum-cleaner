@@ -7,11 +7,17 @@ export class Shape {
     this.x = randomizer.randomNumber('X')
     this.y = randomizer.randomNumber('Y')
 
-    context.fillRect(
+    this.context.fillStyle = 'black';
+    this.context.fill();
+    this.context.lineWidth = 2;
+    this.context.strokeStyle = '#ff3333';
+    this.context.stroke();
+    this.context.fillRect(
       this.x,
       this.y,
       this.width,
       this.height
     )
+    
   }
 }
