@@ -1,6 +1,8 @@
 module.exports = {
-  purge: ['./src/**/*.{vue,js,ts,jsx,tsx}'],
+  purge: ['./src/**/*.{html,js}', './node_modules/tw-elements/dist/js/**/*.js'],
   theme: {},
   variants: {},
-  plugins: [],
+  plugins: [
+    require('tw-elements/dist/plugin')
+  ],
 }
