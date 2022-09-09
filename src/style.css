@@ -95,6 +95,47 @@ button:hover {
   border-color: #646cff;
 }
 
+.location{
+  position: relative;
+  border: 2px solid #000;
+  min-height: 600px;
+  min-width: 450px;
+  float: left;
+  margin: 10px;
+  border-radius: 10%;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(2,auto);
+  grid-auto-columns: 150px;
+  align-items: center;
+  justify-content: center;
+}
+.location-mid{
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+  min-height: 600px;
+  float: left;
+  margin: 10px;
+}
+.main{
+  max-width: 1060px;
+  min-width: 1060px;
+  max-height: 620px;
+  min-height: 620px;
+  overflow: hidden;
+  background-color: #FFF;
+}
+.img{
+  max-width: 100px;
+  max-height: 100px;
+}
+.img-trash{
+  visibility: hidden;
+}
+.trash-wrapper{
+  padding: 50px;
+}
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
