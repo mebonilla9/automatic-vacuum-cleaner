@@ -1,5 +1,5 @@
 import './style.css'
-import 'tw-elements';
+import 'tw-elements'
 import trashAsset from './assets/trash.png'
 import cleanerAsset from './assets/cleaner.png'
 import { Coordinates } from './entities/Coordinates'
@@ -82,7 +82,7 @@ document.querySelector('#app').innerHTML = `
         </div>
       </div>
       <div class="location-mid">
-        <img id="vaccum" class="img" src="${cleanerAsset}" />
+        <img id="vaccum" class="img img-vaccum" src="${cleanerAsset}" />
       </div>
       <div id="sideB" class="location">
         <div class="trash-wrapper">
@@ -100,12 +100,15 @@ document.querySelector('#app').innerHTML = `
       </div>
     </div>
   </div>
+  <div>
+    <h2 class="try-title">Intentos de aspirar: <span id="cleanTry">0</span></h2>
+  </div>
 </div>
 `
 
 const formSim = document.getElementById('formSim')
 
-formSim.addEventListener('submit', () => {
+formSim.addEventListener('submit', event => {
   event.preventDefault()
   start()
 })
@@ -115,14 +118,22 @@ const vaccum = [
   new Coordinates(
     document.getElementById('vaccum').offsetLeft,
     document.getElementById('vaccum').offsetTop),
-  0];
+    0
+  ]
 
-var attemptCounter = 0;
-var trash = 0;
+var attemptCounter = 0
+var trash = 0
+var state = false
+var tiempo = undefined
 
 const board = [{
   sector: [
-    new Sector(new Coordinates(document.getElementById("trA1").offsetParent.offsetLeft + document.getElementById("trA1").offsetLeft - 25, document.getElementById("trA1").offsetParent.offsetTop + document.getElementById("trA1").offsetTop - 20), false, document.getElementById("trA1")),
+    new Sector(
+      new Coordinates(
+        document.getElementById("trA1").offsetParent.offsetLeft + document.getElementById("trA1").offsetLeft - 25, 
+        document.getElementById("trA1").offsetParent.offsetTop + document.getElementById("trA1").offsetTop - 20), 
+        false, 
+        document.getElementById("trA1")),
     new Sector(new Coordinates(document.getElementById("trA2").offsetParent.offsetLeft + document.getElementById("trA2").offsetLeft - 25, document.getElementById("trA2").offsetParent.offsetTop + document.getElementById("trA2").offsetTop - 20), false, document.getElementById("trA2")),
     new Sector(new Coordinates(document.getElementById("trA3").offsetParent.offsetLeft + document.getElementById("trA3").offsetLeft - 25, document.getElementById("trA3").offsetParent.offsetTop + document.getElementById("trA3").offsetTop - 20), false, document.getElementById("trA3")),
     new Sector(new Coordinates(document.getElementById("trA4").offsetParent.offsetLeft + document.getElementById("trA4").offsetLeft - 25, document.getElementById("trA4").offsetParent.offsetTop + document.getElementById("trA4").offsetTop - 20), false, document.getElementById("trA4"))
@@ -139,196 +150,195 @@ const board = [{
 }]
 
 function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise(resolve => setTimeout(resolve, ms))
 }
 
 async function moveToLeft(x) {
-  var step = 1;
-  var xi = document.getElementById('vaccum').offsetLeft;
+  var step = 1
+  var xi = document.getElementById('vaccum').offsetLeft
   while (xi > x) {
-    xi = xi - step;
-    document.getElementById('vaccum').style.left = xi + "px";
-    await sleep(10);
+    xi = xi - step
+    document.getElementById('vaccum').style.left = xi + "px"
+    await sleep(10)
   }
 }
 
 async function moveToRight(x) {
-  var step = 1;
-  var xi = document.getElementById('vaccum').offsetLeft;
+  var step = 1
+  var xi = document.getElementById('vaccum').offsetLeft
 
   while (xi < x) {
-    xi = xi + step;
-    document.getElementById('vaccum').style.left = xi + "px";
-    await sleep(10);
+    xi = xi + step
+    document.getElementById('vaccum').style.left = xi + "px"
+    await sleep(10)
   }
 
 }
 
 async function moveToDown(y) {
 
-  var step = 1;
-  var yi = document.getElementById('vaccum').offsetTop;
+  var step = 1
+  var yi = document.getElementById('vaccum').offsetTop
   while (yi < y) {
-    yi = yi + step;
-    document.getElementById('vaccum').style.top = yi + "px";
-    await sleep(10);
+    yi = yi + step
+    document.getElementById('vaccum').style.top = yi + "px"
+    await sleep(10)
   }
 
 }
 
 async function moveToUp(y) {
-  var step = 1;
-  var yi = document.getElementById('vaccum').offsetTop;
+  var step = 1
+  var yi = document.getElementById('vaccum').offsetTop
   while (yi > y) {
-    yi = yi - step;
-    document.getElementById('vaccum').style.top = yi + "px";
-    await sleep(10);
+    yi = yi - step
+    document.getElementById('vaccum').style.top = yi + "px"
+    await sleep(10)
   }
 
 }
 
 async function movervaccum(indice, sector) {
 
-  const xi = document.getElementById('vaccum').offsetLeft;
-  const yi = document.getElementById('vaccum').offsetTop;
-  const x = board[indice].sector[sector].coordinates.x;
-  const y = board[indice].sector[sector].coordinates.y;
+  const xi = document.getElementById('vaccum').offsetLeft
+  const yi = document.getElementById('vaccum').offsetTop
+  const x = board[indice].sector[sector].coordinates.x
+  const y = board[indice].sector[sector].coordinates.y
 
   if (xi > x) {
-    await moveToLeft(x);
+    await moveToLeft(x)
   }
   if (xi < x) {
-    await moveToRight(x);
+    await moveToRight(x)
   }
   if (yi < y) {
-    await moveToDown(y);
+    await moveToDown(y)
   }
   if (yi > y) {
-    await moveToUp(y);
+    await moveToUp(y)
   }
 
 }
 
 function updateStateSector(x) {
-  state = false;
+  state = false
   board[x].sector.forEach((n, i) => {
     if (n.state) {
-      board[x].state = true;
-      state = true;
+      board[x].state = true
+      state = true
     }
-  });
+  })
 
   if (!state) {
-    board[x].state = false;
+    board[x].state = false
   }
 
 }
 
 async function cleaner(indice, sector) {
-  await movervaccum(indice, sector);
-  board[indice].sector[sector].state = false;
-  await updateStateSector(indice);
-  await sleep(500);
-  board[indice].sector[sector].img.style.visibility = "hidden";
-  console.log("sector aspidaro...");
-  trash = trash - 1;
+  await movervaccum(indice, sector)
+  board[indice].sector[sector].state = false
+  await updateStateSector(indice)
+  await sleep(500)
+  board[indice].sector[sector].img.style.visibility = "hidden"
+  console.log("sector aspidaro...")
+  trash = trash - 1
 }
 
 async function creartrash() {
-  var indice = Math.floor(Math.random() * (2 - 0) + 0);
-  var sector = Math.floor(Math.random() * (4 - 0) + 0);
-  var tmp = board[indice].sector[sector];
+  var indice = Math.floor(Math.random() * (2 - 0) + 0)
+  var sector = Math.floor(Math.random() * (4 - 0) + 0)
+  var tmp = board[indice].sector[sector]
 
   if (trash == 8) {
-    console.log('error...');
+    console.log('error...')
     return
   }
 
   if (tmp.state == false) {
-    tmp.img.style.visibility = true;
-    tmp.state = true;
-    tmp.img.style.visibility = "visible";
-    updateStateSector(indice);
+    tmp.img.style.visibility = true
+    tmp.state = true
+    tmp.img.style.visibility = "visible"
+    updateStateSector(indice)
     return
   }
 
-  creartrash();
+  creartrash()
 }
 
 async function fillInBoard(x) {
-  var valori = 1;
+  var valori = 1
   while (valori <= x) {
     while (trash == 8) {
-      console.log("Espere 10 seg mientras se la vaccum limpia...");
-      await sleep(10000);
+      console.log("Espere 10 seg mientras se la vaccum limpia...")
+      await sleep(10000)
     }
 
-    await creartrash();
+    await creartrash()
 
-    trash = trash + 1;
-    valori = valori + 1;
+    trash = trash + 1
+    valori = valori + 1
     tiempo = (Math.floor(Math.random() * (5 - 3) + 3)) * 1000
-    console.log(tiempo);
-    await sleep(tiempo);
+    console.log(tiempo)
+    await sleep(tiempo)
   }
 }
 
 function changeSector() {
   if (vaccum[1] == 1) {
-    vaccum[1] = 0;
+    vaccum[1] = 0
     return
   }
-  vaccum[1] = 1;
+  vaccum[1] = 1
 }
 
 function start() {
-  debugger
-  document.getElementById("btnRun").disabled = true;
-  let attempt = document.getElementById("txtAttempt").value;
-  let trashCounter = document.getElementById("txtQuantity").value;
-  fillInBoard(parseInt(trashCounter));
-  findAllTrash(parseInt(attempt));
-  //document.getElementById("txtAttempt").innerHTML = 0;
-  attemptCounter = 0;
+  document.getElementById("btnRun").disabled = true
+  let attempt = document.getElementById("txtAttempt").value
+  let trashCounter = document.getElementById("txtQuantity").value
+  fillInBoard(parseInt(trashCounter))
+  findAllTrash(parseInt(attempt))
+  document.getElementById("cleanTry").innerHTML = 0
+  attemptCounter = 0
 
 }
 
 async function findAllTrash(attempt) {
 
-  var sector = null;
+  var sector = null
 
 
   for (var i = 0; i <= 3; i++) {
     if (board[vaccum[1]].sector[i].state) {
-      sector = i;
-      break;
+      sector = i
+      break
     }
   }
 
   if (sector != null) {
-    await cleaner(vaccum[1], sector);
-    sector = null;
+    await cleaner(vaccum[1], sector)
+    sector = null
   }
 
   if (!board[vaccum[1]].state) {
-    await changeSector();
+    await changeSector()
   }
 
   if (trash == 0) {
-    await sleep(5000);
-    console.log("No se encontró basuras");
-    sector = null;
-    attemptCounter += 1;
-    console.log(attemptCounter);
-    //document.getElementById("instentosAspirar").innerHTML = attemptCounter;
+    await sleep(5000)
+    console.log("No se encontró basuras")
+    sector = null
+    attemptCounter += 1
+    console.log(attemptCounter)
+    document.getElementById("cleanTry").innerHTML = attemptCounter
   }
 
   if (attemptCounter >= attempt) {
-    alert("Limpieza terminada");
-    document.getElementById("btnRun").disabled = false;
-    return;
+    alert("Limpieza terminada")
+    document.getElementById("btnRun").disabled = false
+    return
   }
 
-  findAllTrash(attempt);
+  findAllTrash(attempt)
 
 }
