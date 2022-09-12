@@ -118,8 +118,8 @@ const vaccum = [
   new Coordinates(
     document.getElementById('vaccum').offsetLeft,
     document.getElementById('vaccum').offsetTop),
-    0
-  ]
+  0
+]
 
 var attemptCounter = 0
 var trash = 0
@@ -130,21 +130,71 @@ const board = [{
   sector: [
     new Sector(
       new Coordinates(
-        document.getElementById("trA1").offsetParent.offsetLeft + document.getElementById("trA1").offsetLeft - 25, 
-        document.getElementById("trA1").offsetParent.offsetTop + document.getElementById("trA1").offsetTop - 20), 
-        false, 
-        document.getElementById("trA1")),
-    new Sector(new Coordinates(document.getElementById("trA2").offsetParent.offsetLeft + document.getElementById("trA2").offsetLeft - 25, document.getElementById("trA2").offsetParent.offsetTop + document.getElementById("trA2").offsetTop - 20), false, document.getElementById("trA2")),
-    new Sector(new Coordinates(document.getElementById("trA3").offsetParent.offsetLeft + document.getElementById("trA3").offsetLeft - 25, document.getElementById("trA3").offsetParent.offsetTop + document.getElementById("trA3").offsetTop - 20), false, document.getElementById("trA3")),
-    new Sector(new Coordinates(document.getElementById("trA4").offsetParent.offsetLeft + document.getElementById("trA4").offsetLeft - 25, document.getElementById("trA4").offsetParent.offsetTop + document.getElementById("trA4").offsetTop - 20), false, document.getElementById("trA4"))
+        document.getElementById("trA1").offsetParent.offsetLeft + document.getElementById("trA1").offsetLeft - 25,
+        document.getElementById("trA1").offsetParent.offsetTop + document.getElementById("trA1").offsetTop - 20
+      ),
+      false,
+      document.getElementById("trA1")
+    ),
+    new Sector(
+      new Coordinates(
+        document.getElementById("trA2").offsetParent.offsetLeft + document.getElementById("trA2").offsetLeft - 25,
+        document.getElementById("trA2").offsetParent.offsetTop + document.getElementById("trA2").offsetTop - 20
+      ),
+      false,
+      document.getElementById("trA2")
+    ),
+    new Sector(
+      new Coordinates(
+        document.getElementById("trA3").offsetParent.offsetLeft + document.getElementById("trA3").offsetLeft - 25,
+        document.getElementById("trA3").offsetParent.offsetTop + document.getElementById("trA3").offsetTop - 20
+      ),
+      false,
+      document.getElementById("trA3")),
+    new Sector(
+      new Coordinates(
+        document.getElementById("trA4").offsetParent.offsetLeft + document.getElementById("trA4").offsetLeft - 25,
+        document.getElementById("trA4").offsetParent.offsetTop + document.getElementById("trA4").offsetTop - 20
+      ),
+      false,
+      document.getElementById("trA4")
+    )
   ],
   state: false
 }, {
   sector: [
-    new Sector(new Coordinates(document.getElementById("trB1").offsetParent.offsetLeft + document.getElementById("trB1").offsetLeft - 25, document.getElementById("trB1").offsetParent.offsetTop + document.getElementById("trB1").offsetTop - 20), false, document.getElementById("trB1")),
-    new Sector(new Coordinates(document.getElementById("trB2").offsetParent.offsetLeft + document.getElementById("trB2").offsetLeft - 25, document.getElementById("trB2").offsetParent.offsetTop + document.getElementById("trB2").offsetTop - 20), false, document.getElementById("trB2")),
-    new Sector(new Coordinates(document.getElementById("trB3").offsetParent.offsetLeft + document.getElementById("trB3").offsetLeft - 25, document.getElementById("trB3").offsetParent.offsetTop + document.getElementById("trB3").offsetTop - 20), false, document.getElementById("trB3")),
-    new Sector(new Coordinates(document.getElementById("trB4").offsetParent.offsetLeft + document.getElementById("trB4").offsetLeft - 25, document.getElementById("trB4").offsetParent.offsetTop + document.getElementById("trB4").offsetTop - 20), false, document.getElementById("trB4"))
+    new Sector(
+      new Coordinates(
+        document.getElementById("trB1").offsetParent.offsetLeft + document.getElementById("trB1").offsetLeft - 25,
+        document.getElementById("trB1").offsetParent.offsetTop + document.getElementById("trB1").offsetTop - 20
+      ),
+      false,
+      document.getElementById("trB1")
+    ),
+    new Sector(
+      new Coordinates(
+        document.getElementById("trB2").offsetParent.offsetLeft + document.getElementById("trB2").offsetLeft - 25,
+        document.getElementById("trB2").offsetParent.offsetTop + document.getElementById("trB2").offsetTop - 20
+      ),
+      false,
+      document.getElementById("trB2")
+    ),
+    new Sector(
+      new Coordinates(
+        document.getElementById("trB3").offsetParent.offsetLeft + document.getElementById("trB3").offsetLeft - 25,
+        document.getElementById("trB3").offsetParent.offsetTop + document.getElementById("trB3").offsetTop - 20
+      ),
+      false,
+      document.getElementById("trB3")
+    ),
+    new Sector(
+      new Coordinates(
+        document.getElementById("trB4").offsetParent.offsetLeft + document.getElementById("trB4").offsetLeft - 25,
+        document.getElementById("trB4").offsetParent.offsetTop + document.getElementById("trB4").offsetTop - 20
+      ),
+      false,
+      document.getElementById("trB4")
+    )
   ],
   state: false
 }]
