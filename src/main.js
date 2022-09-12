@@ -270,7 +270,7 @@ async function fillInBoard(x) {
   var valori = 1
   while (valori <= x) {
     while (trash == 8) {
-      console.log("Espere 10 seg mientras se la vaccum limpia...")
+      console.log("waite 10s meanwhile the vaccum clean...")
       await sleep(10000)
     }
 
@@ -326,7 +326,6 @@ async function findAllTrash(attempt) {
 
   if (trash == 0) {
     await sleep(5000)
-    console.log("No se encontró basuras")
     sector = null
     attemptCounter += 1
     console.log(attemptCounter)
@@ -334,7 +333,7 @@ async function findAllTrash(attempt) {
   }
 
   if (attemptCounter >= attempt) {
-    alert("Limpieza terminada")
+    alert("Vaccum clean loop complete")
     document.getElementById("btnRun").disabled = false
     return
   }
